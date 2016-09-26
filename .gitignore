@@ -1,1 +1,6 @@
+# Folders to ignore
 target/
+.settings/
+
+# Class files
+*.class
