@@ -6,10 +6,10 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.nio.charset.Charset;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -17,10 +17,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
-
-import org.apache.commons.csv.CSVFormat;
-import org.apache.commons.csv.CSVParser;
-import org.apache.commons.csv.CSVRecord;
 
 /**
  * Servlet implementation class FileUploadServlet
@@ -55,9 +51,19 @@ public class FileUploadServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		processRequest(request, response);
-		System.out.println(request.getRemoteAddr()+":"+request.getRemotePort());
-		response.sendRedirect("127.0.0.1:3000");
-//		doGet(request, response);
+		
+		String ngServerPath = "http://127.0.0.1:3000";
+		LOGGER.info("Dev environment only - being served on Angular Lite-Server listening by default on "+ngServerPath);
+		
+		//TODO: Remove this line before deploying to the app server. 
+		/** Intended for development environment only. The angular app will be integrated in this project, 
+		 * so we will have to remove this before deploying to the app server.
+		 */
+		response.sendRedirect(ngServerPath);
+		//uncomment and use this 2 lines instead:
+//		RequestDispatcher dispatcher = request.getRequestDispatcher("/");
+//		dispatcher.forward(request, response);
+		
 	}
 	
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response)
