@@ -1,6 +1,7 @@
 # Folders to ignore
 target/
 .settings/
+build/
 
 # Class files
 *.class
