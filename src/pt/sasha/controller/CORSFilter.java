@@ -30,14 +30,12 @@ public class CORSFilter implements Filter {
      * Default constructor. 
      */
     public CORSFilter() {
-        // TODO Auto-generated constructor stub
     }
 
 	/**
 	 * @see Filter#destroy()
 	 */
 	public void destroy() {
-		// TODO Auto-generated method stub
 	}
 
 	/**
@@ -45,12 +43,8 @@ public class CORSFilter implements Filter {
 	 */
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		HttpServletRequest req = (HttpServletRequest) request;
-	    System.out.println("Request request.getMethod()");
 	
 	    HttpServletResponse resp = (HttpServletResponse) response;
-//	    resp.addHeader("Access-Control-Allow-Origin","*");
-//	    resp.addHeader("Access-Control-Allow-Methods","GET,POST");
-//	    resp.addHeader("Access-Control-Allow-Headers","Origin, X-Requested-With, Content-Type, Accept");
 	    
 	    resp.addHeader("Access-Control-Allow-Origin", "*");
 	    resp.addHeader("Access-Control-Allow-Headers", "origin, content-type, accept, authorization");
@@ -70,7 +64,6 @@ public class CORSFilter implements Filter {
 	 * @see Filter#init(FilterConfig)
 	 */
 	public void init(FilterConfig fConfig) throws ServletException {
-		// TODO Auto-generated method stub
 	}
 
 }

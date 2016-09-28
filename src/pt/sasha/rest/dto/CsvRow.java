@@ -8,7 +8,7 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 
 @XmlAccessorType(XmlAccessType.NONE)
-public class CsvRow implements Serializable  {
+public class CsvRow implements Serializable, Comparable<CsvRow>  {
 	private static final long serialVersionUID = 1L;
 	
 	@XmlElement(name = "id")
@@ -46,6 +46,20 @@ public class CsvRow implements Serializable  {
 
 	public void setDecision(int decision) {
 		this.decision = decision;
+	}
+
+	@Override
+	public int compareTo(CsvRow o) {
+		if ( this.getId() > o.getId() )
+            return 1;
+        else if ( this.getId() < o.getId() )
+            return -1;
+        else {
+             if ( this.getId() > o.getId() )
+                 return 1;
+             else
+                 return -1;
+        }
 	}
 
 }

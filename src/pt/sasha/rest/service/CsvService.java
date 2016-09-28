@@ -1,25 +1,14 @@
 package pt.sasha.rest.service;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.charset.Charset;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.ws.rs.GET;
-import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
 
-import org.apache.commons.csv.CSVFormat;
-import org.apache.commons.csv.CSVParser;
-import org.apache.commons.csv.CSVRecord;
-
 import pt.sasha.bo.FileUploadBo;
 import pt.sasha.rest.dto.CsvFile;
-import pt.sasha.rest.dto.CsvRow;
-import pt.sasha.rest.dto.User;
 
 /**
  * http://localhost:8080/java-web-resteasy/rs/csv
@@ -48,16 +37,16 @@ public class CsvService {
 	
 	@GET
 	@Produces("application/json")
-	public Response getCsvRowsService() {		
-		CsvFile csvFile = new FileUploadBo().getCsvFile();		
-		return restCORSResponse(csvFile.getRows());
+	public Response getCsvRowsService() {
+		CsvFile file = new FileUploadBo().getCsvFile();	
+		return restCORSResponse(file.getRows());
 	}
 	
 	@GET
 	@Path("vheaders")
 	@Produces("application/json")
 	public Response getCsvInitialVarsServiceInfo() {		
-		List<String> csvVarHeaders = new FileUploadBo().getCsvVarHeaders();
+		List<String> csvVarHeaders = (List<String>)new FileUploadBo().getCsvVarHeaders();
 		return restCORSResponse(csvVarHeaders);
 	}
 	
